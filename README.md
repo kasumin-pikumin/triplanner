@@ -1,24 +1,41 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# <triplanner>
 
-Things you may want to cover:
+## サイト概要
+　旅行の予定作成、旅行の記録を残すことができます。
+　また自分の旅行の記録を発信することもできます。
+　ほかのユーザーの旅行の記録をみることもできるので、旅行の予定をたてる際の参考にもなります。
 
-* Ruby version
 
-* System dependencies
+### サイトテーマ
+　旅行を楽しみたい人のためのSNS
 
-* Configuration
 
-* Database creation
+### テーマを選んだ理由
+　旅行が好きでよく行くのですが、いつもどこに行こうか、どんな行程で行こうかとても悩んでしまいます。
+　そんなとき、ほかの人がどこへどんな行程で行っているのか、知ることができるサービスがあれば便利だと考え、このテーマにしました。
 
-* Database initialization
+### ターゲットユーザ
+　旅行に行く人
 
-* How to run the test suite
+### 主な利用シーン
+　旅行前、旅行後
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+## 実装機能リストのURL
+ https://docs.google.com/spreadsheets/d/1mnvUAH_LOduy58olbAssfpIEi-FxkkgG0W0jsPBn0E8/edit?usp=sharing
 
-* ...
+## 設計書
+<...>
+
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
+
+## 使用素材
+- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
+- 使用しない場合は、使用素材の項目をREADMEから削除してください。
