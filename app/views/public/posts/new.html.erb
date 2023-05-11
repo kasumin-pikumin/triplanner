@@ -1,0 +1,39 @@
+<h1>新規投稿</h1>
+
+<table class="table">
+  <%= form_with model: @post, url: posts_path, method: :post do |f| %>
+  <tbody>
+    <tr>
+      <th>投稿するプラン</th>
+      <td><%= f.select :plan_id, options_from_collection_for_select(Plan.all, :id, :name) %> </td>
+      <td><%= link_to "プランを編集する", root_path %></td>
+    </tr>
+    <tr>
+      <th>タイトル</th>
+      <td><%= f.text_field :title %></td>
+    </tr>
+    <tr>
+      <th>画像</th>
+      <td><%= f.file_field :image, accept: "image/*" %></td>
+    </tr>
+    <tr>
+      <th>旅行日数</th>
+      <td><%= f.select :night, *[1..50] %>泊　<%= f.select :day, *[1..50] %>日</td>
+    </tr>
+    <tr>
+      <th>参加人数</th>
+      <td><%= f.select :person, *[1..100] %>人</td>
+    </tr>
+    <tr>
+      <th>感想等</th>
+      <td><%= f.text_area :report %></td>
+    </tr>
+    <tr>
+      <th></th>
+      <td><%= f.submit '投稿する' %></td>
+    </tr>
+  </tbody>
+  <% end %>
+</table>
+
+

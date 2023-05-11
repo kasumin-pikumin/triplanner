@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
 
+  scope module: :public do
+    resources :posts, only: [:index, :show, :new, :create, :edit]
+  end
+
+  namespace :public do
+    get 'posts/search'
+  end
+
+
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
   sessions: "admin/sessions"
 }
