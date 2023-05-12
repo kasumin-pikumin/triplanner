@@ -1,8 +1,10 @@
 class Public::PostsController < ApplicationController
   def index
+    @posts = Post.all
   end
 
   def show
+    
   end
 
   def new
@@ -27,4 +29,5 @@ class Public::PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:plan_id, :title, :image, :night, :person, :day, :person, :report)
   end
+
 end

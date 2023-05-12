@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 2023_05_11_123910) do
   end
 
   create_table "plans", force: :cascade do |t|
+    t.integer "user_id"
     t.string "name"
     t.date "schedule"
     t.datetime "created_at", precision: 6, null: false
@@ -60,6 +61,8 @@ ActiveRecord::Schema.define(version: 2023_05_11_123910) do
   end
 
   create_table "posts", force: :cascade do |t|
+    t.integer "plan_id"
+    t.integer "user_id"
     t.string "title"
     t.text "report"
     t.integer "night"
