@@ -1,9 +1,14 @@
+<%= render 'public/shared/posts_search' %>
+
 <h1>投稿一覧</h1>
 
 <% @posts.each do |post| %>
 <div>
-  <%= image_tag post.get_image %>
-  <p><%= image_tag "default-image.jpg"%><%= post.user.name %></p>
+  <%= link_to post_path(post.id) do %>
+    <%= image_tag post.get_image %>
+  <% end %>
+  <p><%= image_tag post.user.get_profile_image %> <%= post.user.name %></p>
   <p><%= post.created_at.strftime('%Y/%m/%d') %></p>
+  <p></p>
 </div>
 <% end %>

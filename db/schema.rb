@@ -80,10 +80,9 @@ ActiveRecord::Schema.define(version: 2023_05_11_123910) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "user_image"
     t.string "name"
     t.date "birth_of_date"
-    t.string "private_setting"
+    t.boolean "private_setting", default: false
     t.text "comment"
     t.string "follow"
     t.string "follower"

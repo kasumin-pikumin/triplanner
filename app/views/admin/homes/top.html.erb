@@ -1,0 +1,23 @@
+
+<h2>現在のユーザー数</h2>
+
+<h1>新着投稿</h1>
+
+<table class="table table-borderless">
+  <tbody>
+    <tr>
+      <% @posts.each do |post| %>
+      <td>
+        <%= image_tag post.get_image %><br>
+        <%= post.title %><br>
+        <%= image_tag post.user.get_profile_image %><%= post.user.name %><br>
+        <%= post.created_at.strftime('%Y/%m/%d') %>
+      </td>
+      <% end %>
+    </tr>
+    <tr>
+      <td></td>
+      <td><%= link_to "すべての投稿をみる>>", admin_posts_path %></td>
+    </tr>
+  </tbody>
+</table>

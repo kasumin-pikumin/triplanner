@@ -1,2 +1,15 @@
+<div>
+  <p><%= image_tag @post.user.get_profile_image %><%= @post.user.name %></p>
+  <p><%= @post.title %></p>
+  <%= image_tag @post.get_image %>
+  <p>
+    <% if @post.user == current_user %>
+      <%= link_to "編集する", edit_post_path(@post.id) %>
+    <% end %>
+  </p>
+  <p>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
+  <p>旅行日数：<%= @post.night %>泊 <%= @post.day %>日</p>
+  <p>参加人数：<%= @post.person %>人</p>
+  <p><%= @post.report %></p>
+</div>
 
-<p></p>

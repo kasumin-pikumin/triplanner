@@ -1,0 +1,6 @@
+
+<p>投稿検索</p>
+<%= form_with url: posts_search_path, local: true, method: :get do |f| %>
+  <%= f.text_field :report %>
+  <%= f.submit :検索 %>
+<% end %>

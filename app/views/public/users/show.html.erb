@@ -1,0 +1,42 @@
+<h1>マイページ</h1>
+<%= image_tag @user.get_profile_image %>
+<%= link_to 'マイプラン', edit_user_path(@user.id) %>
+<%= link_to 'いいね一覧', edit_user_path(@user.id) %>
+<%= link_to '投稿一覧', edit_user_path(@user.id) %>
+<%= link_to 'フォロー/フォロワー一覧', edit_user_path(@user.id) %>
+<table class="table">
+  <tbody>
+    <tr>
+      <th>ユーザーネーム</th>
+      <td><%= @user.name %> </td>
+    </tr>
+    <tr>
+      <th>メールアドレス</th>
+      <td><%= @user.email %></td>
+    </tr>
+    <tr>
+      <th>生年月日</th>
+      <td><%= @user.birth_of_date %></td>
+    </tr>
+    <tr>
+      <th>非公開設定</th>
+      <td>
+        <% if @user.private_setting == false %>
+          設定しない（公開）
+        <% else @user.private_setting == true %>
+          設定する（非公開）
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <th>コメント</th>
+      <td><%= @user.comment %></td>
+    </tr>
+    <tr>
+      <th></th>
+      <td><%= link_to '編集する', edit_user_path(@user.id) %></td>
+    </tr>
+  </tbody>
+</table>
+
+

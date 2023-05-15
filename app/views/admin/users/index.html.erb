@@ -1,0 +1,30 @@
+<h1>会員一覧</h1>
+
+<table class= "table">
+  <thead>
+    <tr>
+      <th>ユーザー</th>
+      <th>メールアドレス</th>
+      <th>退会ステータス</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+    <tr>
+      <td>
+        <%= image_tag user.get_profile_image %>
+        <%= link_to user.name, admin_user_path(user.id) %>
+      </td>
+      <td><%= user.email %></td>
+      <td>
+        <% if user.is_deleted == false %>
+          有効
+        <% else user.is_deleted == true %>
+          退会
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+

@@ -1,0 +1,7 @@
+<h1>退会確認</h1>
+<h2>本当に退会しますか？</h2>
+<p>今まで登録した情報、マイプランや投稿したものはすべて消えてしまいます。</p>
+
+<%= link_to "退会しない", users_my_page_path %>
+<%= link_to "退会する", users_withdraw_path, method: :delete, data: { confilm: "本当に退会しますか？" } %>
+

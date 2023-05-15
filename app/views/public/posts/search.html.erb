@@ -1,2 +1,16 @@
-<h1>Public::Posts#search</h1>
-<p>Find me in app/views/public/posts/search.html.erb</p>
+<%= render 'public/shared/posts_search' %>
+
+<h1><%= "@keyword" の検索の結果 %></h1>
+
+<table>
+  <tbody>
+    <% users.each do |user| %>
+      <tr>
+        <td><%= image_tag post.user.get_image %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
