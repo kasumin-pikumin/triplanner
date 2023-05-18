@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
 
+
   namespace :admin do
     root 'homes#top'
     resources :posts, only: [:index, :show]
-    resources :users, only: [:index, :show, :edit]
+    resources :users, only: [:index, :show, :edit, :update]
   end
 
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
@@ -11,17 +12,27 @@ Rails.application.routes.draw do
 }
 
 
+
+
   root to: "homes#top"
   get 'about' => 'homes#about'
 
   scope module: :public do
-    resources :posts, only: [:index, :show, :new, :create, :edit, :update ,:destroy]
-    resources :users, only: [:index, :edit, :update]
+    resources :posts, only: [:index, :show, :new, :create, :edit, :update ,:destroy] do
+      resource :favorites, only: [:create, :destroy]
+    end
+    resources :users, only: [:index, :edit, :update] do
+      resource :relationships, only: [:create, :destroy]
+      get :followings, on: :member
+      get :followers, on: :member
+      member do
+        get :favorites
+      end
+    end
+
   end
 
   namespace :public do
-    get 'users/favorite'
-    get 'users/follow'
     get 'users/search'
   end
 

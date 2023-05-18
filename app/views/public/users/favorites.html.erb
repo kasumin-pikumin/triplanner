@@ -1,9 +1,6 @@
-<h1>ユーザー投稿一覧</h1>
+<h1>いいね一覧</h1>
 
-<p><%= image_tag @user.get_profile_image %><%= @user.name %></p>
-<p><%= @user.comment %></p>
-
-<% @posts.each do |post| %>
+<% @favorites_posts.each do |post| %>
 <div>
   <%= link_to post_path(post.id) do %>
     <%= image_tag post.get_image %>

@@ -1,8 +1,8 @@
 <h1>マイページ</h1>
 <%= image_tag @user.get_profile_image %>
 <%= link_to 'マイプラン', edit_user_path(@user.id) %>
-<%= link_to 'いいね一覧', edit_user_path(@user.id) %>
-<%= link_to '投稿一覧', edit_user_path(@user.id) %>
+<%= link_to 'いいね一覧', favorites_user_path(@user.id) %>
+<%= link_to 'ユーザー投稿一覧', users_path %>
 <%= link_to 'フォロー/フォロワー一覧', edit_user_path(@user.id) %>
 <table class="table">
   <tbody>

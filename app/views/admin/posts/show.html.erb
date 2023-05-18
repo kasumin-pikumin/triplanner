@@ -1,2 +1,27 @@
-<h1>Admin::Posts#show</h1>
-<p>Find me in app/views/admin/posts/show.html.erb</p>
+<div>
+  <p><%= image_tag @post.user.get_profile_image %><%= @post.user.name %></p>
+  <p><%= @post.title %></p>
+  <%= image_tag @post.get_image %>
+  <p>
+    <% if @post.user == current_user %>
+      <%= link_to "編集する", edit_post_path(@post.id) %>
+    <% end %>
+  </p>
+  <% if @post.favorited_by?(current_user) %>
+    <p>
+      <%= link_to post_favorites_path(@post), method: :delete do %>
+        ♥<%= @post.favorites.count %> いいね
+      <% end %>
+    </p>
+    <% else %>
+    <p>
+      <%= link_to post_favorites_path(@post), method: :post do %>
+        ♡<%= @post.favorites.count %> いいね
+      <% end %>
+    </p>
+  <% end %>
+  <p>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
+  <p>旅行日数：<%= @post.night %>泊 <%= @post.day %>日</p>
+  <p>参加人数：<%= @post.person %>人</p>
+  <p><%= @post.report %></p>
+</div>

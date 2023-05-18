@@ -1,9 +1,12 @@
 class Public::UsersController < ApplicationController
+
   def show
     @user = current_user
   end
 
   def index
+    @user = current_user
+    @posts = @user.posts
   end
 
   def edit
@@ -27,11 +30,21 @@ class Public::UsersController < ApplicationController
     redirect_to root_path
   end
 
-  def favorite
+  def favorites
+    @user = current_user
+    @favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
+    @favorites_posts = Post.find(@favorites)
   end
 
-  def follow
+  def followings
+    @user = current_user
+    @users = user.followings
   end
+  
+  def followers
+    @user = current_user
+    @user = user.followers
+  end  
 
   def search
   end
