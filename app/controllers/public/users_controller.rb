@@ -1,12 +1,12 @@
 class Public::UsersController < ApplicationController
 
   def show
-    @user = current_user
+    @user = User.find(params[:id])
+    @posts = @user.posts
   end
 
   def index
-    @user = current_user
-    @posts = @user.posts
+    @users = User.where.not(id: current_user)
   end
 
   def edit
@@ -16,7 +16,7 @@ class Public::UsersController < ApplicationController
   def update
     @user = current_user
     @user.update(user_params)
-    redirect_to users_my_page_path(@user.id)
+    redirect_to user_path(@user.id)
   end
 
   def unsubscribe
@@ -37,14 +37,14 @@ class Public::UsersController < ApplicationController
   end
 
   def followings
-    @user = current_user
-    @users = user.followings
+    @user = User.find(params[:id])
+    @users = @user.followings
   end
-  
+
   def followers
-    @user = current_user
-    @user = user.followers
-  end  
+    @user = User.find(params[:id])
+    @users = @user.followers
+  end
 
   def search
   end

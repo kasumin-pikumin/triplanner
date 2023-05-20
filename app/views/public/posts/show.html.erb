@@ -26,3 +26,18 @@
   <p><%= @post.report %></p>
 </div>
 
+<div>
+  <p>コメント:<%= @post.post_comments.count %></p>
+  <% @post.post_comments.each do |post_comment| %>
+    <p><%= image_tag post_comment.user.get_profile_image %></p>
+    <p><%= post_comment.user.name %>　<%= post_comment.created_at.strftime('%Y/%m/%d') %></p>
+    <p><%= post_comment.comment %></p>
+  <% end %>
+</div>
+<div>
+  <%= form_with model: [@post, @post_comment] do |f| %>
+    <%= f.text_area :comment, rows: '2', placeholder: "コメントをここに" %>
+    <%= f.submit "送信する" %>
+  <% end %>
+</div>
+

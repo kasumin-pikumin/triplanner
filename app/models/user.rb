@@ -13,6 +13,8 @@ class User < ApplicationRecord
   end
 
   has_many :posts, dependent: :destroy
+  
+  has_many :post_comments, dependent: :destroy
 
   has_one_attached :profile_image
 
@@ -32,6 +34,10 @@ class User < ApplicationRecord
       profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
     profile_image.variant(resize_to_limit: [100, 100]).processed
+  end
+
+  def is_followed_by?(user)
+    reverse_of_relationships.find_by(following_id: user.id).present?
   end
 
 

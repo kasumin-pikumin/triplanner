@@ -9,7 +9,6 @@ before_action :authenticate_user!
   end
 
   def destroy
-    f create
     following = current_user.relationships.find_by(follower_id: params[:user_id])
     following.destroy
     redirect_to request.referrer || post_path(user_id)

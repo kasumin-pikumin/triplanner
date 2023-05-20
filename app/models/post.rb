@@ -3,8 +3,11 @@ class Post < ApplicationRecord
   has_one_attached :image
 
   belongs_to :user
-  
+
   has_many :favorites, dependent: :destroy
+
+  has_many :post_comments, dependent: :destroy
+
 
   def get_image
     unless image.attached?
@@ -13,7 +16,7 @@ class Post < ApplicationRecord
     end
     image.variant(resize_to_limit: [300, 200]).processed
   end
-  
+
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end

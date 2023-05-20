@@ -17,11 +17,20 @@ Rails.application.routes.draw do
   root to: "homes#top"
   get 'about' => 'homes#about'
 
+  devise_for :users, skip: [:passwords], controllers: {
+  registrations: "public/registrations",
+  sessions: 'public/sessions'
+}
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+  end
+
   scope module: :public do
     resources :posts, only: [:index, :show, :new, :create, :edit, :update ,:destroy] do
       resource :favorites, only: [:create, :destroy]
+      resources :post_comments, only: [:create]
     end
-    resources :users, only: [:index, :edit, :update] do
+    resources :users, only: [:index, :edit, :update, :show] do
       resource :relationships, only: [:create, :destroy]
       get :followings, on: :member
       get :followers, on: :member
@@ -37,15 +46,10 @@ Rails.application.routes.draw do
   end
 
     get 'posts/search' => 'public/posts#search'
-    get 'users/my_page' => 'public/users#show'
+
     get 'users/unsubscribe' => 'public/users#unsubscribe'
     delete 'users/withdraw' => 'public/users#withdraw'
 
-
-  devise_for :users, skip: [:passwords], controllers: {
-  registrations: "public/registrations",
-  sessions: 'public/sessions'
-}
 
   devise_scope :user do
     post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
