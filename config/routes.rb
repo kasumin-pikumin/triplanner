@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   namespace :admin do
     root 'homes#top'
     resources :posts, only: [:index, :show]
@@ -12,10 +11,8 @@ Rails.application.routes.draw do
 }
 
 
-
-
-  root to: "homes#top"
-  get 'about' => 'homes#about'
+  root to: "public/homes#top"
+  get 'about' => 'public/homes#about'
 
   devise_for :users, skip: [:passwords], controllers: {
   registrations: "public/registrations",
@@ -43,9 +40,9 @@ Rails.application.routes.draw do
 
   namespace :public do
     get 'users/search'
+    get 'posts/search'
   end
 
-    get 'posts/search' => 'public/posts#search'
 
     get 'users/unsubscribe' => 'public/users#unsubscribe'
     delete 'users/withdraw' => 'public/users#withdraw'

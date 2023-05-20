@@ -1,2 +1,37 @@
-<h1>Public::Users#search</h1>
-<p>Find me in app/views/public/users/search.html.erb</p>
+<%= render 'public/shared/posts_search' %>
+
+<h1>"<%= @keyword %>"のユーザー検索の結果</h1>
+
+<table class= "table">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td>
+          <%= image_tag user.get_profile_image %>
+          <%= link_to user.name, user_path(user.id) %>
+        </td>
+        <td>
+          <% if user.is_followed_by?(current_user) %>
+            <%=link_to user_relationships_path(user), method: :delete do %>
+              <button type="button" class="btn btn btn-danger">フォロー解除</button>
+            <% end %>
+          <% else %>
+            <%=link_to user_relationships_path(user), method: :post do %>
+              <button type="button" class="btn btn btn-primary">フォロー</button>
+            <% end %>
+          <% end %>
+        </td>
+        <td>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

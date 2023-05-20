@@ -1,16 +1,18 @@
 <%= render 'public/shared/posts_search' %>
 
-<h1><%= "@keyword" の検索の結果 %></h1>
+<h1>"<%= @keyword %>"の投稿検索の結果</h1>
 
-<table>
-  <tbody>
-    <% users.each do |user| %>
-      <tr>
-        <td><%= image_tag post.user.get_image %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+<% @posts.each do |post| %>
+<div>
+  <%= link_to post_path(post.id) do %>
+    <%= image_tag post.get_image %>
+  <% end %>
+  <%= link_to user_path(post.user.id) do %>
+    <%= image_tag post.user.get_profile_image %> <%= post.user.name %>
+  <% end %>
+  <p><%= post.created_at.strftime('%Y/%m/%d') %></p>
+  <%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %></p>
+</div>
+<% end %>
 
 
