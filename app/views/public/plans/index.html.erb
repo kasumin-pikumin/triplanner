@@ -1,2 +1,14 @@
-<h1>Public::Plans#index</h1>
-<p>Find me in app/views/public/plans/index.html.erb</p>
+<h1>マイプラン</h1>
+
+<% @lans.each do |plan| %>
+<table class="table">
+    <tbody>
+      <tr>
+        <th><%= plan.name %></th>
+        <td><%= link_to '編集する', edit_plan_path(plan.id) %></td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>
+
+<%= link_to "＋新規プランを作成する", new_plan_path %>

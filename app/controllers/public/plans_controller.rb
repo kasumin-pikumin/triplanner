@@ -6,6 +6,11 @@ class Public::PlansController < ApplicationController
   end
 
   def new
+    @plan = Plan.new
+  end
+  
+  def create
+    
   end
 
   def edit

@@ -20,9 +20,9 @@
       <th>非公開設定</th>
       <td>
         <% if @user.private_setting == false %>
-          設定しない（公開）
+          公開
         <% else @user.private_setting == true %>
-          設定する（非公開）
+          非公開
         <% end %>
       </td>
     </tr>

@@ -1,7 +1,7 @@
 <h1>ユーザーページ</h1>
 <%= image_tag @user.get_profile_image %>
 <% if @user == current_user %>
-  <%= link_to 'マイプラン', edit_user_path(@user.id) %>
+  <%= link_to 'マイプラン', plans_path %>
   <%= link_to 'いいね一覧', favorites_user_path(@user.id) %>
 <% end %>
 
@@ -29,9 +29,9 @@
       <th>非公開設定</th>
       <td>
         <% if @user.private_setting == false %>
-          設定しない（公開）
+          公開
         <% else @user.private_setting == true %>
-          設定する（非公開）
+          非公開
         <% end %>
       </td>
     </tr>

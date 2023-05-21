@@ -4,15 +4,16 @@
 
 <div>
   <p><%= image_tag @post.user.get_profile_image %><%= @post.user.name %></p>
-  <p><%= f.text_field :title %></p>
+  <p>タイトル：<%= f.text_field :title %></p>
   <%= image_tag @post.get_image %>
+  <p><%= f.file_field :image, accept: "image/*" ,multiple: true %></p>
   <p>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
   <p>旅行日数：<%= f.select :night, *[1..50] %>泊　<%= f.select :day, *[1..50] %>日</p>
   <p>参加人数：<%= f.select :person, *[1..100] %>人</p>
   <p><%= f.text_area :report %></p>
   <%= f.submit '編集を保存する' %>
   <% if @post.user == current_user %>
-    <%= link_to '削除する', posts_path, method: :delete, "date-confirm" => "本当に削除しますか？" %>
+    <%= link_to '削除する', post_path, method: :delete, "date-confirm" => "本当に削除しますか？" %>
   <% end %>
 </div>
 

@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   end
 
   scope module: :public do
-    resources :posts, only: [:index, :show, :new, :create, :edit, :update ,:destroy] do
+    resources :posts, only: [:index, :show, :new, :create, :edit, :update , :destroy] do
       resource :favorites, only: [:create, :destroy]
       resources :post_comments, only: [:create]
     end
@@ -35,7 +35,7 @@ Rails.application.routes.draw do
         get :favorites
       end
     end
-
+    resources :plans, only: [:index, :show, :new, :create, :edit, :update , :destroy]
   end
 
   namespace :public do
