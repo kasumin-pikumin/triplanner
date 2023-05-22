@@ -4,7 +4,8 @@ class CreatePlans < ActiveRecord::Migration[6.1]
 
       t.integer :user_id
       t.string :name
-      t.date :schedule
+      t.date :first_day
+      t.date :last_day
 
       t.timestamps
     end

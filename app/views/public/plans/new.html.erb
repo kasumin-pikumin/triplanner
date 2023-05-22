@@ -8,11 +8,11 @@
       </tr>
       <tr>
         <th>旅行日</th>
-        <td><%= f.select :start_year, *[2000..2100] %>年　<%= f.select :start_month, *[1..12] %>月　<%= f.select :start_day, *[1..31] %>日　　～</td>
+        <td><%= f.date_field :first_day %>　～</td>
       </tr>
       <tr>
         <th></th>
-        <td><%= f.select :finish_year, *[2000..2100] %>年　<%= f.select :finish_month, *[1..12] %>月　<%= f.select :finish_day, *[1..31] %>日</td>
+        <td><%= f.date_field :last_day %></td>
       </tr>
     </tbody>
   </table>
@@ -20,15 +20,20 @@
     <thead>
       <tr>
         <th>旅行スケジュール</th>
-        <th>時間</th>
+        <th>開始時間</th>
+        <th>終了時間</th>
         <th>何をするか</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <th>１日目</th>
+        <td><%= f.time_field :start_time %></td>
+        <td><%= f.time_field :end_time %></td>
+        <td><%= f.text_field :name %> </td>
       </tr>
     </tbody>
   </table>
+  <%= f.submit :プランを保存する%>
 
   <% end %>
