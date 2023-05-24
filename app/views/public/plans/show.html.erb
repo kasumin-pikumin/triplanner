@@ -1,2 +1,24 @@
-<h1>Public::Plans#show</h1>
-<p>Find me in app/views/public/plans/show.html.erb</p>
+<h1>新規プラン</h1>
+  <table class="table table-borderless">
+    <tbody>
+      <tr>
+        <th>プラン名</th>
+        <td><%= @plan.name %> </td>
+      </tr>
+      <tr>
+        <th>旅行日</th>
+        <td><%= @plan.first_day %>　～　<%= @plan.last_day %></td>
+      </tr>
+    </tbody>
+  </table>
+
+<div class="plan">
+
+      <% @plan_days.each do |plan_day| %>
+        <%= plan_day.day %>日目
+        <%　%>
+
+      <% end %>
+
+
+

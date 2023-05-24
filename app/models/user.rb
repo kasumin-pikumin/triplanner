@@ -12,7 +12,7 @@ class User < ApplicationRecord
     end
   end
 
-  has_many :plans,dependent: :destroy
+  has_many :plans, dependent: :destroy
 
   has_many :posts, dependent: :destroy
 

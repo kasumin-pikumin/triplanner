@@ -1,39 +1,29 @@
 <h1>新規プラン作成</h1>
   <%= form_with model: @plan do |f| %>
-  <table class="table table-borderless">
-    <tbody>
-      <tr>
-        <th>プラン名</th>
-        <td><%= f.text_field :name %> </td>
-      </tr>
-      <tr>
-        <th>旅行日</th>
-        <td><%= f.date_field :first_day %>　～</td>
-      </tr>
-      <tr>
-        <th></th>
-        <td><%= f.date_field :last_day %></td>
-      </tr>
-    </tbody>
-  </table>
-  <table>
-    <thead>
-      <tr>
-        <th>旅行スケジュール</th>
-        <th>開始時間</th>
-        <th>終了時間</th>
-        <th>何をするか</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th>１日目</th>
-        <td><%= f.time_field :start_time %></td>
-        <td><%= f.time_field :end_time %></td>
-        <td><%= f.text_field :name %> </td>
-      </tr>
-    </tbody>
-  </table>
-  <%= f.submit :プランを保存する%>
+    <table class="table table-borderless">
+      <tbody>
+        <tr>
+          <th>プラン名</th>
+          <td><%= f.text_field :name %> </td>
+        </tr>
+        <tr>
+          <th>旅行日</th>
+          <td><%= f.date_field :first_day %>　～　<%= f.date_field :last_day %></td>
+        </tr>
+      </tbody>
+    </table>
 
+    <div class="plan">
+      <h5>旅行スケジュール</h5>
+      <%= f.fields_for :plan_days do |plan_day|%>
+        <%= render 'public/plans/plan_day_fields', f: plan_day %>
+      <% end %>
+      <div class='links'>
+        <%= link_to_add_association '＋日数追加', f, :plan_days %>
+      </div>
+    </div>
+
+    <div= class="actions">
+      <%= f.submit :プランを保存する%>
+    </div>
   <% end %>

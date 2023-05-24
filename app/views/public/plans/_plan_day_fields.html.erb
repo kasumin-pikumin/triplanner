@@ -1,0 +1,17 @@
+<div class="nested-fields">
+        <%= f.select :day, *[1..50] %>日目
+
+        <%= link_to_remove_association '削除', f, class: 'btn btn-default' %>
+
+        <%= f.fields_for :plan_details do |plan_detail| %>
+          <%= render 'public/plans/plan_detail_fields', f: plan_detail %>
+        <% end %>
+
+        <%= link_to_add_association '＋行程追加', f, :plan_details,
+              data: {
+                data_association_insertion_traversal: 'closest',
+                association_insertion_method: 'append' }
+            %>
+</div>
+
+
