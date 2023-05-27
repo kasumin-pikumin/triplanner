@@ -35,18 +35,18 @@ Rails.application.routes.draw do
       member do
         get :favorites
       end
+      collection do
+        get 'unsubscribe'
+        patch 'withdraw'
+      end
     end
-    resources :plans, only: [:index, :show, :new, :create, :edit, :update , :destroy]
+    resources :plans, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   end
 
   namespace :public do
     get 'users/search'
     get 'posts/search'
   end
-
-
-    get 'users/unsubscribe' => 'public/users#unsubscribe'
-    delete 'users/withdraw' => 'public/users#withdraw'
 
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

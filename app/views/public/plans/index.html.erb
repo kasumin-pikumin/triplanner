@@ -1,14 +1,22 @@
+<div class="col-lg-9">
 <h1>マイプラン</h1>
 
-<% @plans.each do |plan| %>
 <table class="table">
+  <% @plans.each do |plan| %>
     <tbody>
       <tr>
-        <th><%= plan.name %></th>
-        <td><%= link_to '編集する', edit_plan_path(plan.id) %></td>
+        <td>
+          <%= link_to plan_path(plan.id) do %>
+            <%= plan.name %>
+          <% end %>
+        </td>
+        <td><%= link_to '編集する', edit_plan_path(plan.id), class: "btn btn-warning" %></td>
+        <td><%= link_to '削除する', plan_path(plan.id), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に削除しますか？"  %></td>
       </tr>
     </tbody>
-  </table>
-<% end %>
+  <% end %>
+</table>
 
-<%= link_to "＋新規プランを作成する", new_plan_path %>
+<%= link_to "＋新規プランを作成する", new_plan_path, class: "btn btn-primary" %>
+
+</div>

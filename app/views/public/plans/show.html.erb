@@ -1,3 +1,4 @@
+<div class="col-lg-9">
 <h1>新規プラン</h1>
   <table class="table table-borderless">
     <tbody>
@@ -12,13 +13,39 @@
     </tbody>
   </table>
 
-<div class="plan">
-
+  <div class="plan">
+    <table class="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>時間</th>
+          <th>予定内容</th>
+        </tr>
+      </thead>
       <% @plan_days.each do |plan_day| %>
-        <%= plan_day.day %>日目
-        <%　%>
-
+      <tbody>
+        <tr>
+          <th colspan="3"><%= plan_day.day %>日目</th>
+        </tr>
+        <tr>
+          <% plan_day.plan_details.each do |plan_detail|%>
+            <tr>
+              <th></th>
+              <td>
+                <%= plan_detail.start_time.strftime('%H:%M') if plan_detail.start_time%>~
+                <%= plan_detail.end_time.strftime('%H:%M') if plan_detail.end_time %></td>
+              <td><%= plan_detail.purpose %></td>
+            </tr>
+          <% end %>
+        </tr>
+      </tbody>
       <% end %>
+    </table>
+  </div>
+  <%= link_to "編集する", edit_plan_path(@plan.id), class: "btn btn-warning" %>
+  <%= link_to "投稿にすすむ", new_post_path, class: "btn btn-primary" %>
+
+  </div>
 
 
 

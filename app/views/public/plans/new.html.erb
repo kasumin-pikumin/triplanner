@@ -1,3 +1,4 @@
+<div class="col-lg-9">
 <h1>新規プラン作成</h1>
   <%= form_with model: @plan do |f| %>
     <table class="table table-borderless">
@@ -19,11 +20,12 @@
         <%= render 'public/plans/plan_day_fields', f: plan_day %>
       <% end %>
       <div class='links'>
-        <%= link_to_add_association '＋日数追加', f, :plan_days %>
+        <%= link_to_add_association '＋日数追加', f, :plan_days , class: "btn btn-outline-success" %>
       </div>
     </div>
 
     <div= class="actions">
-      <%= f.submit :プランを保存する%>
+      <%= f.submit :プランを保存する, class: "btn btn-success" %>
     </div>
   <% end %>
+  </div>

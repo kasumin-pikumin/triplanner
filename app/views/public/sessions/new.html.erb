@@ -1,3 +1,4 @@
+<div class="col-8 ml-auto">
 <h2>ログイン</h2>
 
 <%= form_with model: @user, url: user_session_path do |f| %>
@@ -13,14 +14,20 @@
 
 
   <div class="actions">
-    <%= f.submit "ログイン" %>
+    <%= f.submit "ログイン", class: "btn btn-success"  %>
   </div>
 <% end %>
 
+<p>　</p>
+
 <div class="actions">
-<%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post %>
+<%= link_to 'ゲストログインする方はこちら（閲覧用）', users_guest_sign_in_path, method: :post %>
 </div>
+
+<p>　</p>
 
 <div class="actions">
 <%= render "public/shared/links" %>
+</div>
+
 </div>

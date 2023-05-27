@@ -1,11 +1,12 @@
 class Public::PostsController < ApplicationController
   def index
     @posts = Post.all
-
   end
 
   def show
     @post = Post.find(params[:id])
+    @plan = Plan.find(@post.plan_id)
+    @plan_days = @plan.plan_days
     @post_comment = PostComment.new
   end
 
@@ -28,6 +29,7 @@ class Public::PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    @plan = Plan.find(@post.plan_id)
   end
 
   def update
@@ -48,7 +50,8 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:plan_id, :title, :image, :night, :person, :day, :person, :report)
+    params.require(:post)
+    .permit(:plan_id, :title, :image, :night, :person, :day, :person, :report)
   end
 
 end

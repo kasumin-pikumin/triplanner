@@ -15,28 +15,15 @@
     <header>
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-          <a clas="navbar-brand p-3" href="/"><%= image_tag 'triplannerロゴ.png', size: '150x150' %></a>
+          <a clas="navbar-brand p-3" href="/"><%= image_tag 'triplanner_logo.png', size: '150x150' %></a>
           <div>
             <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
-
             <li>
               <%= link_to '投稿一覧', posts_path %>
             </li>
             <li>
-              <%= link_to 'マイプランをみる', plans_path %>
-            </li>
-            <li>
-              <%= link_to '新規投稿をする', new_post_path %>
-            </li>
-            <li>
               <%= link_to 'ユーザー一覧', users_path %>
-            </li>
-            <li>
-              <%= link_to user_path(current_user.id) do %>
-                <%= image_tag current_user.get_profile_image %>
-                マイページ
-              <% end %>
             </li>
             <li>
               <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
@@ -66,8 +53,40 @@
           </div>
         </div>
       </nav>
-    <%= yield %>
+      <main>
+
+          <div class="container">
+            <div class="row ml-auto">
+              <% if user_signed_in? %>
+              <div class="col-lg-3">
+                  <p>
+                    <%= link_to user_path(current_user.id) do %>
+                      <%= image_tag current_user.get_profile_image %>
+                    <% end %>
+                  </p>
+                  <p><%= current_user.name %></p>
+                  <p>
+                    <%= link_to 'マイページ', user_path(current_user.id) %>
+                  </p>
+                  <p>
+                    <%= link_to 'マイプランをみる', plans_path %>
+                  </p>
+                  <p>
+                    <%= link_to '新規投稿をする', new_post_path %>
+                  </p>
+                  <p><%= render 'public/shared/users_search' %></p>
+                  <p><%= render 'public/shared/posts_search' %></p>
+              </div>
+              <% end %>
+              <%= yield %>
+            </div>
+          </div>
+
+      </main>
     </header>
+    <fooder>
+      <h1>　</h1>
+    </fooder>
   </body>
 
 </html>

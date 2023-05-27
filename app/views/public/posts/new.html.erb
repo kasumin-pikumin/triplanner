@@ -1,12 +1,14 @@
+<div class="col-lg-8">
+
 <h1>新規投稿</h1>
 
-<table class="table">
+<table class="table table-borderless">
   <%= form_with model: @post, url: posts_path, method: :post do |f| %>
   <tbody>
     <tr>
       <th><%= f.label :投稿するプラン %></th>
-      <td><%= f.select :plan_id, options_from_collection_for_select(Plan.all, :id, :name) %> </td>
-      <td><%= link_to "プランを編集する", root_path %></td>
+      <td><%= f.select :plan_id, options_from_collection_for_select(current_user.plans, :id, :name) %> </td>
+      <td><%= link_to "プランを編集する", plans_path, class: "btn btn-primary" %></td>
     </tr>
     <tr>
       <th><%= f.label :タイトル %></th>
@@ -30,10 +32,11 @@
     </tr>
     <tr>
       <th></th>
-      <td><%= f.submit '投稿する' %></td>
+      <td><%= f.submit '投稿する' , class: "btn btn-success" %></td>
     </tr>
   </tbody>
   <% end %>
 </table>
 
+</div>
 

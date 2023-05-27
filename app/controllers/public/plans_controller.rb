@@ -1,5 +1,5 @@
 class Public::PlansController < ApplicationController
-  before_action :is_matching_login_user, only: [:edit, :update]
+  #before_action :is_matching_login_user, only: [:edit, :update]
 
   def index
     @plans = current_user.plans
@@ -8,7 +8,6 @@ class Public::PlansController < ApplicationController
   def show
     @plan = Plan.find(params[:id])
     @plan_days = @plan.plan_days
-    #@plan_details = @plan_days.plan_details
   end
 
   def new
@@ -27,12 +26,28 @@ class Public::PlansController < ApplicationController
   end
 
   def edit
+    @plan = Plan.find(params[:id])
+    @plan_days = @plan.plan_days
+  end
+
+  def update
+    @plan = Plan.find(params[:id])
+    @plan.update(plan_params)
+    redirect_to plan_path(@plan.id)
+  end
+
+  def destroy
+    @plan = Plan.find(params[:id])
+    @plan.destroy
+    redirect_to plans_path
   end
 
   private
 
   def plan_params
-    params.require(:plan).permit(:user_id, :name, :first_day, :last_day, :_destroy, plan_days_attributes: [:plan_id, :day, :_destroy, plan_details_attributes: [:plan_day_id, :plan_day_id, :start_time, :end_time, :purpose ,:_destroy]])
+    params.require(:plan)
+    .permit(:id, :user_id, :name, :first_day, :last_day, :_destroy, plan_days_attributes: [:id, :plan_id, :day, :_destroy, plan_details_attributes: [:id, :plan_day_id, :start_time, :end_time, :purpose ,:_destroy]])
+    .merge(user_id: current_user.id)
   end
 
 end
