@@ -1,3 +1,4 @@
+<div class="col-lg-10 ml-auto">
 <h1>会員編集</h1>
 
 <%= form_with model: [:admin, @user], method: :patch do |f| %>
@@ -44,10 +45,11 @@
     </tr>
     <tr>
       <th></th>
-      <td><%= f.submit '変更を保存' %></td>
+      <td><%= f.submit '変更を保存',class: "btn btn-primary" %></td>
     </tr>
   </tbody>
 </table>
 
 <% end %>
 
+</div>

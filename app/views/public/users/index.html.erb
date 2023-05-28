@@ -1,15 +1,8 @@
-<%= render 'public/shared/users_search' %>
+<div class="col-lg-9">
 
 <h1>ユーザー一覧</h1>
 
 <table class= "table">
-  <thead>
-    <tr>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
   <tbody>
     <% @users.each do |user| %>
       <tr>
@@ -35,3 +28,4 @@
   </tbody>
 </table>
 
+</div>

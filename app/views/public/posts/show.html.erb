@@ -3,11 +3,11 @@
 
       <div class="post">
         <p><%= image_tag @post.user.get_profile_image %><%= @post.user.name %></p>
-        <p><%= @post.title %></p>
+        <h5><%= @post.title %></h5>
           <%= image_tag @post.get_image %>
         <p>
           <% if @post.user == current_user %>
-            <%= link_to "編集する", edit_post_path(@post.id) %>
+            <%= link_to "編集する", edit_post_path(@post.id, class: "btn btn-primary") %>
           <% end %>
         </p>
         <% if @post.favorited_by?(current_user) %>

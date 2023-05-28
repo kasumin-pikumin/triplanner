@@ -1,9 +1,9 @@
+
 <h1>会員詳細</h1>
 
-
-<%= image_tag @user.get_profile_image %>
 <table class="table">
   <tbody>
+    <tr><%= image_tag @user.get_profile_image %></tr>
     <tr>
       <th>ユーザーネーム</th>
       <td><%= @user.name %> </td>
@@ -49,15 +49,25 @@
 
 <h1>会員投稿一覧</h1>
 
-<% @posts.each do |post| %>
-<div>
-  <%= link_to admin_post_path(post.id) do %>
-    <%= image_tag post.get_image %>
-  <% end %>
-  <p><%= post.title %></p>
-  <p>♡<%= post.favorites.count %> いいね</p>
-  <p><%= post.created_at.strftime('%Y/%m/%d') %></p>
-  <p></p>
-</div>
-<% end %>
-
+<table class="table table-borderless">
+  <tbody>
+    <tr>
+      <% @posts.each do |post| %>
+      <td>
+        <p>
+          <%= link_to admin_post_path(post.id) do %>
+            <%= image_tag post.get_image %>
+          <% end %>
+        </p>
+        <p>
+          <%= link_to admin_post_path(post.id) do %>
+            <%= post.title %>
+          <% end %>
+        </p>
+        <p>♡<%= post.favorites.count %> いいね</p>
+        <p><%= post.created_at.strftime('%Y/%m/%d') %></p>
+      </td>
+      <% end %>
+    </tr>
+  </tbody>
+</table>

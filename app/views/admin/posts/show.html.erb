@@ -1,27 +1,50 @@
-<div>
+<div class="col-lg-2"></div>
+
+<div class="col-lg-6">
   <p><%= image_tag @post.user.get_profile_image %><%= @post.user.name %></p>
-  <p><%= @post.title %></p>
+  <h5><%= @post.title %></h5>
   <%= image_tag @post.get_image %>
-  <p>
-    <% if @post.user == current_user %>
-      <%= link_to "編集する", edit_post_path(@post.id) %>
-    <% end %>
-  </p>
-  <% if @post.favorited_by?(current_user) %>
-    <p>
-      <%= link_to post_favorites_path(@post), method: :delete do %>
-        ♥<%= @post.favorites.count %> いいね
-      <% end %>
-    </p>
-    <% else %>
-    <p>
-      <%= link_to post_favorites_path(@post), method: :post do %>
-        ♡<%= @post.favorites.count %> いいね
-      <% end %>
-    </p>
-  <% end %>
+  <p>♥<%= @post.favorites.count %> いいね</p>
   <p>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
   <p>旅行日数：<%= @post.night %>泊 <%= @post.day %>日</p>
   <p>参加人数：<%= @post.person %>人</p>
   <p><%= @post.report %></p>
+</div>
+
+
+<div class="col-lg-3">
+  <h5>マイプラン</h5>
+    <table class="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>時間</th>
+          <th>予定内容</th>
+        </tr>
+      </thead>
+      <% @plan_days.each do |plan_day| %>
+      <tbody>
+        <tr>
+          <th colspan="3"><%= plan_day.day %>日目</th>
+        </tr>
+        <tr>
+          <% plan_day.plan_details.each do |plan_detail|%>
+            <tr>
+              <th></th>
+              <td>
+                <%= plan_detail.start_time.strftime('%H:%M') if plan_detail.start_time%>~
+                <%= plan_detail.end_time.strftime('%H:%M') if plan_detail.end_time %></td>
+              <td><%= plan_detail.purpose %></td>
+            </tr>
+          <% end %>
+        </tr>
+      </tbody>
+      <% end %>
+    </table>
+  </div>
+
+</div>
+
+<div class="col-lg-10 ml-auto">
+  <%= link_to '投稿を削除する', admin_post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
 </div>

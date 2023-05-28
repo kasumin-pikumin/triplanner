@@ -15,7 +15,11 @@
     <header>
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
+          <% if admin_signed_in? %>
+            <a clas="navbar-brand p-3" href="/admin"><%= image_tag 'triplanner_logo.png', size: '150x150' %></a>
+          <% else %>
           <a clas="navbar-brand p-3" href="/"><%= image_tag 'triplanner_logo.png', size: '150x150' %></a>
+          <% end %>
           <div>
             <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>

@@ -13,7 +13,7 @@
       <p><%= f.text_area :report %></p>
       <%= f.submit '投稿の編集を保存する', class: "btn btn-success" %>
       <% if @post.user == current_user %>
-        <%= link_to '削除する', post_path, method: :delete, "date-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
+        <%= link_to '削除する', post_path, method: :delete, "dat-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
       <% end %>
   <% end %>
 </div>

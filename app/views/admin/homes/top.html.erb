@@ -1,17 +1,30 @@
+<div class="col-lg-10 ml-auto">
+<h2>
+  現在の登録者数(退会者も含む)　：　<%= link_to "#{User.count} 人", admin_users_path %>
+</h2>
 
-<h2>現在のユーザー数</h2>
-
-<h1>新着投稿</h1>
+<h2>新着投稿</h2>
 
 <table class="table table-borderless">
   <tbody>
     <tr>
       <% @posts.each do |post| %>
       <td>
-        <%= image_tag post.get_image %><br>
-        <%= post.title %><br>
-        <%= image_tag post.user.get_profile_image %><%= post.user.name %><br>
-        <%= post.created_at.strftime('%Y/%m/%d') %>
+        <p>
+          <%= link_to admin_post_path(post.id) do %>
+            <%= image_tag post.get_image %>
+          <% end %>
+        </p>
+        <p>
+          <%= link_to admin_user_path(post.user.id) do %>
+            <%= image_tag post.user.get_profile_image %> <%= post.user.name %>
+          <% end %>
+        </p>
+        <p>
+          <%= link_to admin_post_path(post.id) do %>
+            <%= post.title %>
+          <% end %>
+        </p>
       </td>
       <% end %>
     </tr>

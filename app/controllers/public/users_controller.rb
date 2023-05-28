@@ -4,6 +4,11 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    if @user.private_setting = true && @user != current_user
+      respond_to do |format|
+        format.html { redirect_to users_path, notice:'このページは非表示のためアクセスできません' }
+      end
+    end
     @posts = @user.posts.order(created_at: :desc)
   end
 
