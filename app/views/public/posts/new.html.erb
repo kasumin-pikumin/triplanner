@@ -2,13 +2,13 @@
 
 <h1>新規投稿</h1>
 
+<%= form_with model: @post, url: posts_path, method: :post do |f| %>
 <table class="table table-borderless">
-  <%= form_with model: @post, url: posts_path, method: :post do |f| %>
   <tbody>
     <tr>
-      <th><%= f.label :投稿するプラン %></th>
-      <td><%= f.select :plan_id, options_from_collection_for_select(current_user.plans, :id, :name) %> </td>
-      <td><%= link_to "プランを編集する", plans_path, class: "btn btn-primary" %></td>
+      <th>プランの選択</th>
+      <td><%= f.select :plan_id, options_from_collection_for_select(current_user.plans, :id, :name) %></td>
+      <td><%= link_to "プランの作成・編集", plans_path, class: "btn btn-primary" %></td>
     </tr>
     <tr>
       <th><%= f.label :タイトル %></th>
@@ -20,7 +20,7 @@
     </tr>
     <tr>
       <th><%= f.label :旅行日数 %></th>
-      <td><%= f.select :night, *[1..50] %>泊　<%= f.select :day, *[1..50] %>日</td>
+      <td><%= f.select :night, *[0..50] %>泊　<%= f.select :day, *[1..50] %>日</td>
     </tr>
     <tr>
       <th><%= f.label :参加人数 %></th>
@@ -35,8 +35,7 @@
       <td><%= f.submit '投稿する' , class: "btn btn-success" %></td>
     </tr>
   </tbody>
-  <% end %>
 </table>
-
+<% end %>
 </div>
 

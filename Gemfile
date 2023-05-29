@@ -60,5 +60,7 @@ gem 'devise'
  gem "enum_help"
 
  gem 'nested_form_fields'
- 
+
  gem 'cocoon'
+
+ gem 'rails-i18n'

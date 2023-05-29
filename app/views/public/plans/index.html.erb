@@ -11,12 +11,16 @@
           <% end %>
         </td>
         <td><%= link_to '編集する', edit_plan_path(plan.id), class: "btn btn-warning" %></td>
-        <td><%= link_to '削除する', plan_path(plan.id), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に削除しますか？"  %></td>
+        <% if plan.posts.blank? %>
+          <td><%= link_to '削除する', plan_path(plan.id), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に削除しますか？"  %></td>
+        <% else %>
+          <td>投稿済み</td>
+        <% end %>
       </tr>
     </tbody>
   <% end %>
 </table>
 
-<%= link_to "＋新規プランを作成する", new_plan_path, class: "btn btn-primary" %>
+<p><%= link_to "＋新規プランを作成する", new_plan_path, class: "btn btn-primary" %></p>
 
 </div>

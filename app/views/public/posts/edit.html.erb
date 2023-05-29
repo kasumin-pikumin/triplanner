@@ -1,8 +1,7 @@
 
 <div class="col-lg-9">
   <%= form_with model: @post, method: :patch do |f| %>
-    <h1>編集</h1>
-    <h2>投稿</h2>
+    <h1>投稿編集</h1>
       <p><%= image_tag @post.user.get_profile_image %><%= @post.user.name %></p>
       <p>タイトル：<%= f.text_field :title %></p>
         <%= image_tag @post.get_image %>
@@ -12,9 +11,6 @@
       <p>参加人数：<%= f.select :person, *[1..100] %>人</p>
       <p><%= f.text_area :report %></p>
       <%= f.submit '投稿の編集を保存する', class: "btn btn-success" %>
-      <% if @post.user == current_user %>
-        <%= link_to '削除する', post_path, method: :delete, "dat-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
-      <% end %>
   <% end %>
 </div>
 

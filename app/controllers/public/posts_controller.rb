@@ -5,31 +5,32 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @plan = Plan.find(@post.plan_id)
-    @plan_days = @plan.plan_days
+    @plans = @post.plans
+
     @post_comment = PostComment.new
   end
 
   def new
     @post = Post.new
+    
   end
 
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     @post.save!
+    PostPlan.create!(post_id: @post.id, plan_id: params[:post][:plan_id].to_i)
     redirect_to post_path(@post.id)
   end
 
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to posts_path
+    redirect_to user_path(current_user.id)
   end
 
   def edit
     @post = Post.find(params[:id])
-    @plan = Plan.find(@post.plan_id)
   end
 
   def update
@@ -51,7 +52,7 @@ class Public::PostsController < ApplicationController
 
   def post_params
     params.require(:post)
-    .permit(:plan_id, :title, :image, :night, :person, :day, :person, :report)
+    .permit(:title, :image, :night, :person, :day, :person, :report, plans_attributes: [:post_id])
   end
 
 end
