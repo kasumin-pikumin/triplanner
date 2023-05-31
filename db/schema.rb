@@ -127,8 +127,8 @@ ActiveRecord::Schema.define(version: 2023_05_29_121441) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "name"
-    t.date "birth_of_date"
+    t.string "name", default: "", null: false
+    t.date "birth_of_date", null: false
     t.boolean "private_setting", default: false
     t.text "comment"
     t.string "follow"

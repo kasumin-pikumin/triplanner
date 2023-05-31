@@ -2,6 +2,7 @@ class Public::PlansController < ApplicationController
   #before_action :is_matching_login_user, only: [:edit, :update]
 
   def index
+    @user = current_user
     @plans = current_user.plans
   end
 
@@ -11,6 +12,7 @@ class Public::PlansController < ApplicationController
   end
 
   def new
+    @user = current_user
     @plan = Plan.new
     @plan_day = @plan.plan_days.build
     @plan_detail = @plan_day.plan_details.build

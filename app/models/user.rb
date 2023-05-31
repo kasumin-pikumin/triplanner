@@ -7,8 +7,9 @@ class User < ApplicationRecord
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
-
-      # 例えば name を入力必須としているならば， user.name = "ゲスト" なども必要
+      user.name = 'ゲストユーザー'
+      user.birth_of_date = "1900-01-01"
+      user.comment = 'あなたはゲストとしてログインしています。'
     end
   end
 
@@ -29,6 +30,7 @@ class User < ApplicationRecord
   has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: :follower_id
   has_many :followers, through: :reverse_of_relationships, source: :following
 
+  has_one_attached :image
 
   def get_profile_image
     unless profile_image.attached?

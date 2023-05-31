@@ -1,3 +1,4 @@
+
 <div class="col-lg-9">
 
 <h1>ユーザー一覧</h1>
@@ -10,6 +11,7 @@
           <%= image_tag user.get_profile_image %>
           <%= link_to user.name, user_path(user.id) %>
         </td>
+        <% if @user.email != 'guest@example.com' %>
         <td>
           <% if user.is_followed_by?(current_user) %>
             <%=link_to user_relationships_path(user), method: :delete do %>
@@ -21,6 +23,7 @@
             <% end %>
           <% end %>
         </td>
+        <% end %>
         <td>
         </td>
       </tr>

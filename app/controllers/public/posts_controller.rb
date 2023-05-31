@@ -4,6 +4,7 @@ class Public::PostsController < ApplicationController
   end
 
   def show
+    @user = current_user
     @post = Post.find(params[:id])
     @plans = @post.plans
 
@@ -11,8 +12,8 @@ class Public::PostsController < ApplicationController
   end
 
   def new
+    @user = current_user
     @post = Post.new
-    
   end
 
   def create

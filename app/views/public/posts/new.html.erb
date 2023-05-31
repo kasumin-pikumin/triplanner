@@ -2,6 +2,10 @@
 
 <h1>新規投稿</h1>
 
+<% if @user.email == 'guest@example.com' %>
+  <p>ユーザーになると投稿ができるようになります！</p>
+<% else %>
+
 <%= form_with model: @post, url: posts_path, method: :post do |f| %>
 <table class="table table-borderless">
   <tbody>
@@ -39,3 +43,4 @@
 <% end %>
 </div>
 
+<% end %>

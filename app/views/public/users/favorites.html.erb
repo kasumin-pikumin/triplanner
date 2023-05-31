@@ -6,8 +6,8 @@
 <div>
   <%= link_to post_path(post.id) do %>
     <%= image_tag post.get_image %>
+    <p><%= post.title %></p>
   <% end %>
-  <p><%= post.title %></p>
   <p>♡<%= post.favorites.count %></p>
   <p>
     <%= link_to user_path(post.user.id) do %>

@@ -1,10 +1,9 @@
 class Public::UsersController < ApplicationController
 
-
-
   def show
+    @users = current_user
     @user = User.find(params[:id])
-    if @user.private_setting = true && @user != current_user
+    if @user.private_setting  && @user != current_user
       respond_to do |format|
         format.html { redirect_to users_path, notice:'このユーザーは非公開のためアクセスできません' }
       end
@@ -13,7 +12,8 @@ class Public::UsersController < ApplicationController
   end
 
   def index
-    @users = User.where.not(id: current_user)
+    @user = current_user
+    @users = User.where.not(id: current_user).where.not(email: 'guest@example.com').where.not(is_deleted: true)
   end
 
   def edit
@@ -22,7 +22,9 @@ class Public::UsersController < ApplicationController
 
   def update
     @user = current_user
+
     @user.update(user_params)
+
     redirect_to user_path(@user.id)
   end
 
@@ -32,10 +34,15 @@ class Public::UsersController < ApplicationController
 
   def withdraw
     @user = current_user
-    @user.update(is_deleted: true)
-    reset_session
-    flash[:notice] = "退会手続きが完了しました"
-    redirect_to root_path
+    if @user.email == 'guest@example.com'
+      reset_session
+      redirect_to :root
+    else
+      @user.update(is_deleted: true)
+      reset_session
+      flash[:notice] = "退会手続きが完了しました"
+      redirect_to root_path
+    end
   end
 
   def favorites

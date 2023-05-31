@@ -1,12 +1,16 @@
 
 <h1>ユーザー詳細</h1>
 
-<table class="table">
+<table class="table table-borderless">
   <tbody>
     <tr><%= image_tag @user.get_profile_image %></tr>
     <tr>
       <th>ユーザーネーム</th>
       <td><%= @user.name %> </td>
+    </tr>
+    <tr>
+      <th>コメント</th>
+      <td><%= @user.comment %></td>
     </tr>
     <tr>
       <th>メールアドレス</th>
@@ -27,10 +31,6 @@
       </td>
     </tr>
     <tr>
-      <th>コメント</th>
-      <td><%= @user.comment %></td>
-    </tr>
-    <tr>
       <th>退会ステータス</th>
       <td>
         <% if @user.is_deleted == false %>
@@ -42,7 +42,9 @@
     </tr>
     <tr>
       <th></th>
-      <td><%= link_to '編集する', edit_admin_user_path(@user.id), class: "btn btn-warning" %></td>
+      <% if @user.email != 'guest@example.com' %>
+        <td><%= link_to '編集する', edit_admin_user_path(@user.id), class: "btn btn-warning" %></td>
+      <% end %>
     </tr>
   </tbody>
 </table>

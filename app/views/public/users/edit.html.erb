@@ -14,6 +14,10 @@
       <td><%= f.text_field :name %></td>
     </tr>
     <tr>
+      <th><%= f.label :コメント %></th>
+      <td><%= f.text_area :comment %></td>
+    </tr>
+    <tr>
       <th><%= f.label :メールアドレス %></th>
       <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
     </tr>
@@ -23,17 +27,15 @@
     </tr>
     <tr>
       <th><%= f.label :非公開設定 %></th>
+
       <td>
-        <%= f.radio_button :private_setting , "false" %>
+        <%= f.radio_button :private_setting , "false", checked: @user.private_setting == false %>
         <%= f.label :公開%>
-        <%= f.radio_button :private_setting ,"true" %>
+        <%= f.radio_button :private_setting , "true", checked:  @user.private_setting == true %>
         <%= f.label :非公開%>
       </td>
     </tr>
-    <tr>
-      <th><%= f.label :コメント %></th>
-      <td><%= f.text_area :comment %></td>
-    </tr>
+
     <tr>
       <th></th>
       <td><%= f.submit '変更を保存', class: "btn btn-success" %></td>

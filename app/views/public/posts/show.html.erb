@@ -2,7 +2,9 @@
     <div class="col-lg-6">
 
       <div class="post">
-        <p><%= image_tag @post.user.get_profile_image %><%= @post.user.name %></p>
+        <%= link_to user_path(@post.user.id) do %>
+          <p><%= image_tag @post.user.get_profile_image %><%= @post.user.name %></p>
+        <% end %>
         <h5><%= @post.title %></h5>
           <%= image_tag @post.get_image %>
         <% if @post.favorited_by?(current_user) %>
@@ -13,8 +15,12 @@
           </p>
         <% else %>
           <p>
-            <%= link_to post_favorites_path(@post), method: :post do %>
+            <% if @user.email == 'guest@example.com' %>
               ♡<%= @post.favorites.count %> いいね
+            <% else %>
+              <%= link_to post_favorites_path(@post), method: :post do %>
+                ♡<%= @post.favorites.count %> いいね
+              <% end %>
             <% end %>
           </p>
         <% end %>
@@ -31,12 +37,18 @@
           <p><%= post_comment.comment %></p>
         <% end %>
       </div>
+
+
+      <% if @user.email != 'guest@example.com' %>
       <div>
         <%= form_with model: [@post, @post_comment] do |f| %>
           <%= f.text_area :comment, rows: '2', placeholder: "コメントをここに" %>
           <%= f.submit "送信する" %>
         <% end %>
       </div>
+      <% end %>
+
+
       <div>
         <% if @post.user == current_user %>
           <p><%= link_to "投稿を編集する", edit_post_path(@post.id), class: "btn btn-warning" %></p>
