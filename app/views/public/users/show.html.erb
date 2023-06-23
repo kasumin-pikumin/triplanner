@@ -1,10 +1,13 @@
 
-<div class="col-lg-9">
+<div class="col-lg-9 row">
+
+<div class="col-lg-12">
 <% if @user == current_user %>
   <h1>マイページ</h1>
 <% else %>
   <h1>ユーザーページ</h1>
 <% end %>
+</div>
 
 
 <%= image_tag @user.get_profile_image %>
@@ -76,10 +79,9 @@
   </tbody>
 </table>
 
-<table class="table  table-borderless">
-  <tr>
+
     <% @posts.each do |post| %>
-    <td>
+     <div class="col-lg-4">
       <p>
         <%= link_to post_path(post.id) do %>
           <%= image_tag post.get_image %>
@@ -92,9 +94,7 @@
       </p>
       <p><%= post.created_at.strftime('%Y/%m/%d') %></p>
       <p><%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %></p>
-    </td>
+    </div>
     <% end %>
-  </tr>
-</table>
 
 </div>
