@@ -53,7 +53,7 @@ class Public::PostsController < ApplicationController
 
   def post_params
     params.require(:post)
-    .permit(:title, :image, :night, :person, :day, :person, :report, plans_attributes: [:post_id])
+    .permit(:title, :image, :night, :person, :day, :person, :report, plans_attributes: [:plan_id])
   end
 
 end
