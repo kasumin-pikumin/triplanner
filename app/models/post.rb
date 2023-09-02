@@ -9,9 +9,9 @@ class Post < ApplicationRecord
   has_many :post_comments, dependent: :destroy
 
   has_many :post_plans, dependent: :destroy
-  
+
   has_many :plans, through: :post_plans
-  
+
   accepts_nested_attributes_for :plans
 
 
